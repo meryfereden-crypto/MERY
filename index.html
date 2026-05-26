@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grade 7 Mathematics Comprehensive Assessment Quiz</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons for custom visuals -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@300;400;500;600;700;800&display=swap');
+    
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Ethiopic', sans-serif;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+    }
+
+    .math-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="gradient-bg min-h-screen text-slate-100 flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="w-full max-w-7xl mx-auto px-4 py-5 flex flex-wrap items-center justify-between border-b border-slate-800 gap-4">
+    <div class="flex items-center gap-3">
+      <div class="p-2.5 bg-indigo-600 rounded-xl shadow-lg shadow-indigo-500/30">
+        <i class="fa-solid fa-calculator text-2xl text-white"></i>
+      </div>
+      <div>
+        <h1 class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+          GRADE 7 MATHEMATICS
+        </h1>
+        <p class="text-xs text-slate-400 font-medium">Chapters 5, 6 & 7 Assessment Bank (80 Items)</p>
+      </div>
+    </div>
+    
+    <!-- Narrator Control and Global Progress Indicators -->
+    <div class="flex items-center gap-3">
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl px-4 py-2 flex items-center gap-2">
+        <span class="flex h-2.5 w-2.5 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+        </span>
+        <span class="text-xs font-semibold text-slate-300">Narrator: <span class="text-indigo-400">British Accent Active</span></span>
+      </div>
+      <button id="global-mute-btn" onclick="toggleMute()" class="p-2.5 bg-slate-800/80 hover:bg-slate-700 rounded-xl text-indigo-400 transition-all border border-slate-700" title="Mute/Unmute Narrator">
+        <i id="mute-icon" class="fa-solid fa-volume-high"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="w-full max-w-4xl mx-auto px-4 py-8 flex-grow">
+    
+    <!-- SCREEN 1: Registration Form -->
+    <div id="screen-reg" class="math-card rounded-3xl p-8 shadow-2xl transition-all duration-300 transform">
+      <div class="max-w-md mx-auto text-center">
+        <span class="px-3 py-1 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-full text-xs font-semibold uppercase tracking-widest">Student Portal</span>
+        <h2 class="text-3xl font-bold mt-4 mb-2">Examinee Registration</h2>
+        <p class="text-slate-400 text-sm mb-8">Please enter your accurate credentials to initialize the mathematics evaluation examination.</p>
+        
+        <form id="registration-form" onsubmit="startQuiz(event)" class="space-y-5 text-left">
+          <div>
+            <label for="student-name" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Full Name</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-500">
+                <i class="fa-solid fa-user"></i>
+              </span>
+              <input type="text" id="student-name" required placeholder="e.g. Almaz Kebede" 
+                     class="w-full bg-slate-950/60 border border-slate-700/80 rounded-xl py-3 pl-10 pr-4 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+            </div>
+          </div>
+
+          <div>
+            <label for="student-id" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Student ID Number</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-500">
+                <i class="fa-solid fa-id-card"></i>
+              </span>
+              <input type="text" id="student-id" required placeholder="e.g. G7-10492/18" 
+                     class="w-full bg-slate-950/60 border border-slate-700/80 rounded-xl py-3 pl-10 pr-4 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+            </div>
+          </div>
+
+          <button type="submit" class="w-full mt-6 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-indigo-900/40 transform hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2">
+            <span>Begin Examination</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <div class="mt-8 border-t border-slate-800/80 pt-6 grid grid-cols-3 gap-3 text-center">
+          <div class="p-2.5 bg-slate-950/40 rounded-xl">
+            <p class="text-xs font-medium text-slate-400">Total Items</p>
+            <p class="text-base font-bold text-slate-200 mt-0.5">80 Questions</p>
+          </div>
+          <div class="p-2.5 bg-slate-950/40 rounded-xl">
+            <p class="text-xs font-medium text-slate-400">Core Chapters</p>
+            <p class="text-base font-bold text-slate-200 mt-0.5">5, 6, and 7</p>
+          </div>
+          <div class="p-2.5 bg-slate-950/40 rounded-xl">
+            <p class="text-xs font-medium text-slate-400">Narration Voice</p>
+            <p class="text-base font-bold text-slate-200 mt-0.5">UK English</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREEN 2: Main Quiz Interface -->
+    <div id="screen-quiz" class="hidden space-y-6">
+      <!-- Quiz Status Header -->
+      <div class="flex flex-wrap items-center justify-between gap-4 bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 bg-indigo-500/20 text-indigo-300 rounded-md text-xs font-bold" id="chapter-tag">Chapter 5</span>
+          <span class="text-xs text-slate-400">Question <span id="current-q-index" class="text-slate-100 font-bold">1</span> of <span class="text-slate-100 font-bold">80</span></span>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="text-right">
+            <span class="text-xs text-slate-400">Examinee: </span>
+            <span class="text-xs font-bold text-indigo-300" id="display-student-name">...</span>
+          </div>
+          <!-- Voice Narrator Controller for the individual question -->
+          <button id="narrator-play-btn" onclick="speakCurrentQuestion()" class="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600/20 border border-indigo-500/30 hover:bg-indigo-600/35 rounded-lg text-indigo-300 text-xs font-semibold transition-all">
+            <i class="fa-solid fa-volume-high animate-pulse"></i>
+            <span>Listen</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Question and Options Container -->
+      <div class="math-card rounded-3xl p-6 md:p-8 space-y-6 relative overflow-hidden">
+        <!-- Interactive progress bar -->
+        <div class="absolute top-0 left-0 right-0 h-1 bg-slate-800">
+          <div id="progress-bar-fill" class="h-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-300" style="width: 1.25%;"></div>
+        </div>
+
+        <!-- Question text -->
+        <div class="space-y-2">
+          <h3 id="question-text" class="text-lg md:text-xl font-bold leading-relaxed text-slate-100">
+            What is the sum of the interior angles of any triangle?
+          </h3>
+        </div>
+
+        <!-- Options grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="options-container">
+          <!-- Dynamically populated options -->
+        </div>
+
+        <!-- Dynamic Feedback Panel (Hidden until answered) -->
+        <div id="feedback-panel" class="hidden border border-slate-800 rounded-2xl p-5 md:p-6 bg-slate-950/80 space-y-4">
+          <div class="flex items-center gap-2.5" id="feedback-status-title">
+            <i id="feedback-status-icon" class="fa-solid"></i>
+            <span id="feedback-status-text" class="font-bold text-sm"></span>
+          </div>
+          
+          <div class="space-y-4 pt-2 border-t border-slate-900">
+            <!-- English Explanation -->
+            <div class="space-y-1">
+              <span class="text-xs font-bold text-indigo-400 tracking-wider uppercase block">English Explanation</span>
+              <p id="explanation-en" class="text-xs md:text-sm text-slate-300 leading-relaxed"></p>
+            </div>
+            
+            <!-- Amharic Explanation -->
+            <div class="space-y-1">
+              <span class="text-xs font-bold text-amber-500 tracking-wider uppercase block">የአማርኛ ማብራሪያ (Amharic Explanation)</span>
+              <p id="explanation-am" class="text-xs md:text-sm text-slate-300 leading-relaxed font-normal"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Bar -->
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <button id="btn-back" onclick="previousQuestion()" class="flex items-center gap-2 px-5 py-3 bg-slate-800 hover:bg-slate-700 active:bg-slate-700/80 rounded-xl font-bold text-slate-300 text-sm transition-all border border-slate-700">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Back</span>
+        </button>
+
+        <div class="flex items-center gap-3">
+          <button id="btn-skip" onclick="skipQuestion()" class="px-5 py-3 bg-slate-900/60 hover:bg-slate-800 text-slate-400 text-sm font-semibold rounded-xl border border-slate-800/80 transition-all">
+            Skip / Next
+          </button>
+          
+          <button id="btn-submit-exam" onclick="finishQuizConfirmation()" class="hidden px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-emerald-950/40 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>Submit Assessment</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Jump direct jump panel -->
+      <div class="bg-slate-900/40 border border-slate-800/60 rounded-2xl p-4">
+        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Jump Directly to Question</h4>
+        <div class="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto p-1" id="question-navigator-dots">
+          <!-- Dynamically populated navigation indices -->
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREEN 3: Dashboard & Results Summary -->
+    <div id="screen-results" class="hidden space-y-6">
+      <div class="math-card rounded-3xl p-8 shadow-2xl space-y-8">
+        
+        <!-- Score Overview Title -->
+        <div class="text-center space-y-2">
+          <span class="px-3.5 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full text-xs font-bold uppercase tracking-widest">Assessment Completed</span>
+          <h2 class="text-3xl font-black text-slate-100">Grade Report Card</h2>
+          <p class="text-sm text-slate-400">All responses have been parsed, corrected, and calculated.</p>
+        </div>
+
+        <!-- Grade Ring Visualization and Core Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center bg-slate-950/40 border border-slate-800 rounded-2xl p-6">
+          <div class="flex flex-col items-center justify-center text-center space-y-2">
+            <div class="relative flex items-center justify-center">
+              <!-- Score ring -->
+              <svg class="w-36 h-36 transform -rotate-90">
+                <circle cx="72" cy="72" r="64" stroke="rgba(30, 41, 59, 0.5)" stroke-width="12" fill="transparent" />
+                <circle id="score-ring-progress" cx="72" cy="72" r="64" stroke="#4f46e5" stroke-width="12" fill="transparent" 
+                        stroke-dasharray="402.12" stroke-dashoffset="402.12" class="transition-all duration-1000 ease-out" />
+              </svg>
+              <!-- Score numbers inside circular path -->
+              <div class="absolute text-center">
+                <span id="result-score-percent" class="text-3xl font-black block">0%</span>
+                <span id="result-score-fraction" class="text-xs text-slate-400 block mt-0.5">0 / 80 Correct</span>
+              </div>
+            </div>
+            <div id="performance-badge" class="px-3 py-1 bg-slate-800 text-slate-300 text-xs font-bold rounded-lg mt-2">Satisfactory</div>
+          </div>
+
+          <!-- Metadata list -->
+          <div class="space-y-4">
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Assessment Metadata</h3>
+            
+            <div class="grid grid-cols-2 gap-4">
+              <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Examinee</p>
+                <p class="text-sm font-bold text-slate-200 mt-0.5" id="res-student-name">--</p>
+              </div>
+              <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Student ID</p>
+                <p class="text-sm font-bold text-slate-200 mt-0.5" id="res-student-id">--</p>
+              </div>
+              <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Unanswered</p>
+                <p class="text-sm font-bold text-slate-200 mt-0.5" id="res-skipped">0 / 80</p>
+              </div>
+              <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Status</p>
+                <p class="text-sm font-bold mt-0.5 text-emerald-400" id="res-pass-fail">PASS</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submission and Notification Actions -->
+        <div class="p-6 bg-indigo-950/30 border border-indigo-900/30 rounded-2xl space-y-4">
+          <div class="flex items-start gap-3">
+            <div class="p-2 bg-indigo-500/20 text-indigo-400 rounded-xl">
+              <i class="fa-solid fa-paper-plane text-lg"></i>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-indigo-200">Official Instructor Notification</h4>
+              <p class="text-xs text-indigo-300/80 leading-relaxed mt-0.5">
+                Submit your official score and metadata report to your instructor **Mr. Mesay Feredegn** (mesayferedegn2@gmail.com). Click the buttons below to broadcast your final performance.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3 pt-2">
+            <!-- Mailto Option -->
+            <button onclick="submitScoreEmail()" class="flex-1 flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-5 rounded-xl text-xs transition-all shadow-lg shadow-indigo-950/50">
+              <i class="fa-solid fa-envelope"></i>
+              <span>Send Score to Instructor (Email)</span>
+            </button>
+            
+            <!-- Retake Option -->
+            <button onclick="restartExam()" class="flex-1 flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-3 px-5 rounded-xl text-xs transition-all border border-slate-700">
+              <i class="fa-solid fa-rotate-right"></i>
+              <span>Retake Quiz Assessment</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Instructor Gradebook (Local Copy Dashboard) -->
+        <div class="space-y-4 pt-6 border-t border-slate-800/80">
+          <div class="flex items-center justify-between">
+            <h4 class="text-sm font-extrabold tracking-wider text-slate-300 uppercase">Local Teacher Gradebook (Dashboard)</h4>
+            <span class="text-xs bg-slate-800 text-slate-400 px-2.5 py-1 rounded-md">Saved in Local Memory</span>
+          </div>
+
+          <div class="overflow-x-auto rounded-xl border border-slate-800">
+            <table class="w-full text-left border-collapse bg-slate-950/20">
+              <thead>
+                <tr class="bg-slate-900/60 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+                  <th class="px-4 py-3">Examinee Name</th>
+                  <th class="px-4 py-3">Student ID</th>
+                  <th class="px-4 py-3 text-center">Correct</th>
+                  <th class="px-4 py-3 text-center">Score %</th>
+                  <th class="px-4 py-3 text-right">Date Completed</th>
+                </tr>
+              </thead>
+              <tbody id="gradebook-rows">
+                <!-- Dynamically filled with storage history -->
+                <tr>
+                  <td colspan="5" class="px-4 py-8 text-center text-slate-500 text-xs">No grades filed in this browser session.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full text-center py-6 border-t border-slate-900/80 bg-slate-950/20 mt-12">
+    <div class="max-w-7xl mx-auto px-4 text-xs text-slate-500 space-y-1">
+      <p>Grade 7 Mathematics Interactive Assessment Bank &copy; 2026</p>
+      <p>Chapters 5 (Perimeter & Area), 6 (Congruence of Polygons), and 7 (Data Handling)</p>
+    </div>
+  </footer>
+
+  <!-- Submission Confirm Modal -->
+  <div id="confirm-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center px-4">
+    <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onclick="closeConfirmModal()"></div>
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-sm w-full relative z-10 text-center space-y-4">
+      <div class="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-full flex items-center justify-center mx-auto text-xl">
+        <i class="fa-solid fa-clipboard-check"></i>
+      </div>
+      <h3 class="text-lg font-bold text-slate-200">Submit Quiz?</h3>
+      <p class="text-slate-400 text-xs leading-relaxed">
+        Are you ready to lock in your answers and view your final results and explanations? You will not be able to change your choices after submission.
+      </p>
+      <div class="flex gap-3 pt-2">
+        <button onclick="closeConfirmModal()" class="flex-1 py-2.5 bg-slate-800 text-slate-300 text-xs font-bold rounded-xl hover:bg-slate-700 transition-all">
+          Resume Quiz
+        </button>
+        <button onclick="submitExam()" class="flex-1 py-2.5 bg-indigo-600 text-white text-xs font-bold rounded-xl hover:bg-indigo-500 transition-all">
+          Yes, Submit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Speech/Voice configuration and Questions database script -->
+  <script>
+    // System Speech Narrator configuration
+    let narratorMuted = false;
+    let currentSynthUtterance = null;
+
+    // Toggle mute
+    function toggleMute() {
+      narratorMuted = !narratorMuted;
+      const btn = document.getElementById('global-mute-btn');
+      const icon = document.getElementById('mute-icon');
+      if (narratorMuted) {
+        icon.className = 'fa-solid fa-volume-xmark';
+        btn.classList.add('bg-slate-800/20', 'text-slate-500');
+        btn.classList.remove('bg-slate-800/80', 'text-indigo-400');
+        stopSpeech();
+      } else {
+        icon.className = 'fa-solid fa-volume-high';
+        btn.classList.remove('bg-slate-800/20', 'text-slate-500');
+        btn.classList.add('bg-slate-800/80', 'text-indigo-400');
+      }
+    }
+
+    // Stop active speech synthesis
+    function stopSpeech() {
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    // Comprehensive Questions Database with English and Amharic explanations
+    const quizQuestions = [
+      {
+        id: 1,
+        chapter: "Chapter 5",
+        text: "What is the sum of the interior angles of any triangle?",
+        options: { A: "180°", B: "90°", C: "270°", D: "360°" },
+        correct: "A",
+        explanationEn: "The sum of the interior angles of a triangle is always exactly 180 degrees. This property holds true for all kinds of triangles in Euclidean geometry (scalene, isosceles, right, etc.).",
+        explanationAm: "በማንኛውም ሦስት ማዕዘን ውስጥ ያሉት የውስጥ ማዕዘኖች ድምር ሁል ጊዜ 180 ዲግሪ ነው። ይህ ሕግ ለማንኛውም የሦስት ማዕዘን ዓይነት (ባለሦስት እኩል ያልሆኑ ጎኖች፣ ባለሁለት እኩል ጎኖች፣ ቀኝ ማዕዘን ወዘተ) ይሠራል።"
+      },
+      {
+        id: 2,
+        chapter: "Chapter 5",
+        text: "A triangle with all three sides of unequal lengths is called a:",
+        options: { A: "Scalene triangle", B: "Isosceles triangle", C: "Equilateral triangle", D: "Right-angled triangle" },
+        correct: "A",
+        explanationEn: "A scalene triangle is a triangle in which all three sides have different lengths, and consequently, all three angles have different measures.",
+        explanationAm: "ሦስቱም ጎኖቹ የተለያዩ ርዝመት ያላቸው ሦስት ማዕዘን 'ስካሊን' (Scalene) ሦስት ማዕዘን ይባላል። በዚህ ምክንያት ሦስቱም ማዕዘኖቹ የተለያዩ ልኬቶች አሏቸው።"
+      },
+      {
+        id: 3,
+        chapter: "Chapter 5",
+        text: "If a triangle has two sides equal in length, it is classified as:",
+        options: { A: "Isosceles triangle", B: "Scalene triangle", C: "Equilateral triangle", D: "Right triangle" },
+        correct: "A",
+        explanationEn: "An isosceles triangle is a triangle with (at least) two equal sides. The angles opposite to those equal sides are also equal in measure.",
+        explanationAm: "ቢያንስ ሁለት እኩል ርዝመት ያላቸው ጎኖች ያሉት ሦስት ማዕዘን 'አይሶስለስ' (Isosceles - ባለሁለት እኩል ጎን) ሦስት ማዕዘን ይባላል። ለእነዚህ እኩል ጎኖች ትይዩ የሆኑት ማዕዘኖችም እኩል ልኬት አሏቸው።"
+      },
+      {
+        id: 4,
+        chapter: "Chapter 5",
+        text: "Each interior angle of an equilateral triangle measures:",
+        options: { A: "60°", B: "45°", C: "90°", D: "120°" },
+        correct: "A",
+        explanationEn: "Since an equilateral triangle has three equal sides and angles, dividing the total sum of angles (180°) by 3 yields exactly 60° for each angle.",
+        explanationAm: "የእኩል ጎን ሦስት ማዕዘን ሦስቱም ጎኖችና ማዕዘኖች እኩል በመሆናቸው፤ አጠቃላይ የማዕዘናት ድምሩን (180 ዲግሪ) ለ 3 ስናካፍል የእያንዳንዱ ማዕዘን ልኬት 60 ዲግሪ ይሆናል።"
+      },
+      {
+        id: 5,
+        chapter: "Chapter 5",
+        text: "A triangle that has one interior angle measuring exactly 90° is known as a:",
+        options: { A: "Right-angled triangle", B: "Acute-angled triangle", C: "Obtuse-angled triangle", D: "Equilateral triangle" },
+        correct: "A",
+        explanationEn: "A triangle with one angle measuring 90 degrees is a right-angled triangle. It serves as the basis for trigonometry and the Pythagorean theorem.",
+        explanationAm: "አንድ የውስጥ ማዕዘኑ በትክክል 90 ዲግሪ የሆነ ሦስት ማዕዘን 'ቀኝ ማዕዘን ሦስት ማዕዘን' (Right-angled triangle) በመባል ይታወቃል።"
+      },
+      {
+        id: 6,
+        chapter: "Chapter 5",
+        text: "In a right-angled triangle, the side opposite the 90° angle is called the:",
+        options: { A: "Hypotenuse", B: "Base", C: "Altitude", D: "Leg" },
+        correct: "A",
+        explanationEn: "The hypotenuse is the longest side of a right-angled triangle, and it is always the side opposite the 90° right angle.",
+        explanationAm: "በቀኝ ማዕዘን ሦስት ማዕዘን ውስጥ ከ 90 ዲግሪ ማዕዘን ትይዩ የሚገኘው ረጅሙ ጎን 'አስረጅ ጎን' ወይም 'ሃይፖቴነስ' (Hypotenuse) ይባላል።"
+      },
+      {
+        id: 7,
+        chapter: "Chapter 5",
+        text: "A triangle with angles measuring 110°, 40°, and 30° is classified as:",
+        options: { A: "Obtuse-angled triangle", B: "Acute-angled triangle", C: "Right-angled triangle", D: "Equilateral triangle" },
+        correct: "A",
+        explanationEn: "Since one of the angles (110°) is greater than 90°, the triangle is classified as an obtuse-angled triangle.",
+        explanationAm: "ከማዕዘኖቹ አንዱ (110 ዲግሪ) ከ 90 ዲግሪ በላይ ስለሆነ ሦስት ማዕዘኑ 'ደደብ ማዕዘን ሦስት ማዕዘን' (Obtuse-angled triangle) ተብሎ ይመደባል።"
+      },
+      {
+        id: 8,
+        chapter: "Chapter 5",
+        text: "What is a four-sided geometric figure bounded by line segments called?",
+        options: { A: "Quadrilateral", B: "Pentagon", C: "Triangle", D: "Hexagon" },
+        correct: "A",
+        explanationEn: "A quadrilateral is a polygon with four edges (sides) and four vertices (corners). Examples include rectangles, squares, and trapeziums.",
+        explanationAm: "በአራት ቀጥተኛ መስመሮች የተከበበ የጂኦሜትሪ ቅርፅ 'ባለ አራት ጎን' (Quadrilateral) ይባላል። ለምሳሌ ሬክታንግል፣ ስኩዌር እና ትራፒዚየም።"
+      },
+      {
+        id: 9,
+        chapter: "Chapter 5",
+        text: "A line segment that connects two non-adjacent vertices of a quadrilateral is called a:",
+        options: { A: "Diagonal", B: "Base", C: "Side", D: "Altitude" },
+        correct: "A",
+        explanationEn: "A diagonal is a straight line joining two non-consecutive or non-adjacent corners (vertices) of a polygon.",
+        explanationAm: "ሁለት ተከታታይ ያልሆኑ ባለ አራት ጎን ቅርፅ ማዕዘኖችን የሚያገናኝ ቀጥተኛ መስመር 'ዲያጎናል' (diagonal - ሰያፍ መስመር) ይባላል።"
+      },
+      {
+        id: 10,
+        chapter: "Chapter 5",
+        text: "A quadrilateral with exactly one pair of opposite sides parallel is called a:",
+        options: { A: "Trapezium", B: "Parallelogram", C: "Rhombus", D: "Rectangle" },
+        correct: "A",
+        explanationEn: "A trapezium (or trapezoid) is defined as a quadrilateral with exactly one pair of opposite parallel sides.",
+        explanationAm: "አንድ ጥንድ ትይዩ የሆኑ ተቃራኒ ጎኖች ብቻ ያሉት ባለ አራት ጎን ቅርፅ 'ትራፒዚየም' (Trapezium) ይባላል።"
+      },
+      {
+        id: 11,
+        chapter: "Chapter 5",
+        text: "In a trapezium, the parallel sides are referred to as the:",
+        options: { A: "Bases", B: "Legs", C: "Diagonals", D: "Altitudes" },
+        correct: "A",
+        explanationEn: "The parallel sides of a trapezium are called its bases, while the non-parallel sides are referred to as legs.",
+        explanationAm: "በአንድ ትራፒዚየም ውስጥ ያሉት ትይዩ ጎኖች 'መሰረቶች' (bases) የሚባሉ ሲሆን፣ ትይዩ ያልሆኑት ጎኖች ደግሞ 'እግሮች' (legs) ይባላሉ።"
+      },
+      {
+        id: 12,
+        chapter: "Chapter 5",
+        text: "If the non-parallel sides of a trapezium are equal in length, it is called an:",
+        options: { A: "Isosceles trapezium", B: "Parallelogram", C: "Rhombus", D: "Kite" },
+        correct: "A",
+        explanationEn: "An isosceles trapezium is a trapezium where the non-parallel sides (legs) are equal in length, which also means its base angles are equal.",
+        explanationAm: "በትራፒዚየም ውስጥ ትይዩ ያልሆኑት ጎኖች (እግሮች) እኩል ርዝመት ካላቸው 'ባለ እኩል እግር ትራፒዚየም' (Isosceles trapezium) ይባላል።"
+      },
+      {
+        id: 13,
+        chapter: "Chapter 5",
+        text: "A quadrilateral in which both pairs of opposite sides are parallel is called a:",
+        options: { A: "Parallelogram", B: "Trapezium", C: "Kite", D: "Trapezoid" },
+        correct: "A",
+        explanationEn: "A parallelogram is a simple quadrilateral with two pairs of parallel sides. Opposite sides and opposite angles are always equal.",
+        explanationAm: "ሁለቱም ጥንድ ተቃራኒ ጎኖቹ ትይዩ የሆኑለት ባለ አራት ጎን ቅርፅ 'ፓራሌሎግራም' (Parallelogram - ትይዩ ጎን) ይባላል።"
+      },
+      {
+        id: 14,
+        chapter: "Chapter 5",
+        text: "Which of the following is a key property of any parallelogram?",
+        options: { A: "Opposite sides are equal in length", B: "Diagonals are perpendicular", C: "All angles are 90°", D: "All sides are equal in length" },
+        correct: "A",
+        explanationEn: "In any parallelogram, opposite sides are always equal in length, opposite angles are equal, and the diagonals bisect each other.",
+        explanationAm: "በማንኛውም ፓራሌሎግራም ውስጥ ተቃራኒ ጎኖች ሁል ጊዜ እኩል ርዝመት አላቸው፣ ተቃራኒ ማዕዘናትም እኩል ሲሆኑ ሰያፍ መስመሮቻቸው ደግሞ እርስ በእርስ ይከፈላሉ ።"
+      },
+      {
+        id: 15,
+        chapter: "Chapter 5",
+        text: "A parallelogram with four right angles (90°) is a:",
+        options: { A: "Rectangle", B: "Rhombus", C: "Kite", D: "Trapezium" },
+        correct: "A",
+        explanationEn: "A rectangle is a special type of parallelogram where all four interior angles are right angles (90 degrees).",
+        explanationAm: "አራት ማዕዘኖቹ 90 ዲግሪ የሆኑለት ትይዩ ጎን (ፓራሌሎግራም) 'ሬክታንግል' (Rectangle - አራት ማዕዘን) ይባላል።"
+      },
+      {
+        id: 16,
+        chapter: "Chapter 5",
+        text: "A parallelogram in which all four sides are equal in length is called a:",
+        options: { A: "Rhombus", B: "Rectangle", C: "Trapezium", D: "Kite" },
+        correct: "A",
+        explanationEn: "A rhombus is a quadrilateral and a special parallelogram where all four sides are of equal length.",
+        explanationAm: "አራቱም ጎኖቹ እኩል ርዝመት ያላቸው ባለ አራት ጎን ቅርፅ 'ሮምበስ' (Rhombus) በመባል ይታወቃል።"
+      },
+      {
+        id: 17,
+        chapter: "Chapter 5",
+        text: "The diagonals of a rhombus always have which property?",
+        options: { A: "They are perpendicular to each other", B: "They are equal in length", C: "They are parallel to each other", D: "They do not bisect each other" },
+        correct: "A",
+        explanationEn: "The diagonals of a rhombus are always perpendicular to each other, meaning they cross at a 90-degree angle, and they also bisect each other.",
+        explanationAm: "የሮምበስ ሰያፍ መስመሮች (diagonals) ሁል ጊዜ እርስ በርሳቸው በቀኝ ማዕዘን (90 ዲግሪ) ይቆራረጣሉ፣ እንዲሁም እርስ በእርስ እኩል ለሁለት ይከፈላሉ።"
+      },
+      {
+        id: 18,
+        chapter: "Chapter 5",
+        text: "A parallelogram with four equal sides and four right angles is a:",
+        options: { A: "Square", B: "Rectangle", C: "Rhombus", D: "Parallelogram" },
+        correct: "A",
+        explanationEn: "A square is a regular quadrilateral, which means it has four equal sides and four equal angles (all 90-degree right angles).",
+        explanationAm: "አራት እኩል ጎኖች እና አራት 90 ዲግሪ ማዕዘኖች ያሉት ቅርፅ 'ስኩዌር' (Square - ካሬ) ይባላል። እሱም ሬክታንግልም ሮምበስም ነው።"
+      },
+      {
+        id: 19,
+        chapter: "Chapter 5",
+        text: "A quadrilateral that has two pairs of consecutive equal sides, but opposite sides are not equal, is a:",
+        options: { A: "Kite", B: "Rhombus", C: "Trapezium", D: "Parallelogram" },
+        correct: "A",
+        explanationEn: "A kite is a quadrilateral with two pairs of adjacent (consecutive) sides that are equal in length, unlike a parallelogram where opposite sides are equal.",
+        explanationAm: "ሁለት ጥንድ ተከታታይ የሆኑ እኩል ጎኖች ያሉት ነገር ግን ተቃራኒ ጎኖቹ እኩል ያልሆኑበት ባለ አራት ጎን ቅርፅ 'ካይት' (Kite - ወረቀት ወፍ) ይባላል።"
+      },
+      {
+        id: 20,
+        chapter: "Chapter 5",
+        text: "Find the perimeter of a rectangle with a base of 12 cm and a height of 5 cm.",
+        options: { A: "34 cm", B: "17 cm", C: "60 cm", D: "24 cm" },
+        correct: "A",
+        explanationEn: "The perimeter of a rectangle is calculated as: $P = 2 \times (\text{base} + \text{height}) = 2 \times (12 + 5) = 2 \times 17 = 34\text{ cm}$.",
+        explanationAm: "የሬክታንግል ዙሪያ ቀመር፡ $P = 2 \times (\text{መሰረት} + \text{ቁመት})$ ነው። ስለዚህ $P = 2 \times (12 + 5) = 2 \times 17 = 34\text{ ሴ.ሜ}$ ይሆናል።"
+      },
+      {
+        id: 21,
+        chapter: "Chapter 5",
+        text: "Find the area of a rectangle with a base of 15 cm and a height of 8 cm.",
+        options: { A: "120 cm²", B: "46 cm²", C: "23 cm²", D: "60 cm²" },
+        correct: "A",
+        explanationEn: "The area of a rectangle is calculated by multiplying its base by its height: $\text{Area} = \text{base} \times \text{height} = 15 \times 8 = 120\text{ cm}^2$.",
+        explanationAm: "የሬክታንግል ስፋት ቀመር፡ $\text{ስፋት} = \text{መሰረት} \times \text{ቁመት}$ ነው። ስለዚህ $\text{ስፋት} = 15 \times 8 = 120\text{ ሴ.ሜ}^2$ ይሆናል።"
+      },
+      {
+        id: 22,
+        chapter: "Chapter 5",
+        text: "If the side length of a square is 9 cm, what is its area?",
+        options: { A: "81 cm²", B: "36 cm²", C: "18 cm²", D: "27 cm²" },
+        correct: "A",
+        explanationEn: "The area of a square is calculated as side squared: $\text{Area} = \text{side}^2 = 9 \times 9 = 81\text{ cm}^2$.",
+        explanationAm: "የካሬ (ስኩዌር) ስፋት ቀመር፡ $\text{ጎን} \times \text{ጎን}$ ነው። ስለዚህ $9 \times 9 = 81\text{ ሴ.ሜ}^2$ ይሆናል።"
+      },
+      {
+        id: 23,
+        chapter: "Chapter 5",
+        text: "What is the perimeter of a square whose side length is 11 cm?",
+        options: { A: "44 cm", B: "121 cm", C: "22 cm", D: "88 cm" },
+        correct: "A",
+        explanationEn: "The perimeter of a square is calculated by multiplying its side length by 4: $\text{Perimeter} = 4 \times \text{side} = 4 \times 11 = 44\text{ cm}$.",
+        explanationAm: "የካሬ ዙሪያ ቀመር፡ $4 \times \text{የጎን ርዝመት}$ ነው። ስለዚህ $4 \times 11 = 44\text{ ሴ.ሜ}$ ይሆናል።"
+      },
+      {
+        id: 24,
+        chapter: "Chapter 5",
+        text: "The area of a parallelogram with a base of 10 cm and a height of 6 cm is:",
+        options: { A: "60 cm²", B: "32 cm²", C: "16 cm²", D: "30 cm²" },
+        correct: "A",
+        explanationEn: "The area of a parallelogram is calculated by base multiplied by height: $\text{Area} = \text{base} \times \text{height} = 10 \times 6 = 60\text{ cm}^2$.",
+        explanationAm: "የፓራሌሎግራም ስፋት ቀመር፡ $\text{መሰረት} \times \text{ቁመት}$ ነው። ስለዚህ $10 \times 6 = 60\text{ ሴ.ሜ}^2$ ይሆናል።"
+      },
+      {
+        id: 25,
+        chapter: "Chapter 5",
+        text: "The formula to find the area of a triangle with base b and height h is:",
+        options: { A: "1/2 * b * h", B: "b * h", C: "2(b + h)", D: "b + h" },
+        correct: "A",
+        explanationEn: "The area of a triangle is exactly half of the area of a parallelogram with the same base and height: $\text{Area} = \frac{1}{2} \times b \times h$.",
+        explanationAm: "የሦስት ማዕዘን ስፋት ቀመር ከመሰረቱና ከቁመቱ ብዜት ግማሽ ጋር እኩል ነው፡ $\text{ስፋት} = \frac{1}{2} \times \text{መሰረት} \times \text{ቁመት}$።"
+      },
+      {
+        id: 26,
+        chapter: "Chapter 5",
+        text: "Find the area of a triangle whose base is 14 cm and altitude is 5 cm.",
+        options: { A: "35 cm²", B: "70 cm²", C: "19 cm²", D: "38 cm²" },
+        correct: "A",
+        explanationEn: "Using the formula: $\text{Area} = \frac{1}{2} \times \text{base} \times \text{height} = 0.5 \times 14 \times 5 = 35\text{ cm}^2$.",
+        explanationAm: "ቀመሩን በመጠቀም፡ $\text{ስፋት} = \frac{1}{2} \times 14 \times 5 = 7 \times 5 = 35\text{ ሴ.ሜ}^2$ ይሆናል።"
+      },
+      {
+        id: 27,
+        chapter: "Chapter 5",
+        text: "The area of a trapezium with parallel bases of 12 cm and 8 cm, and a height of 6 cm is:",
+        options: { A: "60 cm²", B: "120 cm²", C: "96 cm²", D: "48 cm²" },
+        correct: "A",
+        explanationEn: "The area of a trapezium is calculated as: $\text{Area} = \frac{1}{2} \times (a + b) \times h = \frac{1}{2} \times (12 + 8) \times 6 = \frac{1}{2} \times 20 \times 6 = 60\text{ cm}^2$.",
+        explanationAm: "የትራፒዚየም ስፋት ቀመር፡ $\text{ስፋት} = \frac{1}{2} \times (\text{መሰረት}_1 + \text{መሰረት}_2) \times \text{ቁመት}$ ነው። ስለዚህ $\frac{1}{2} \times (12 + 8) \times 6 = 10 \times 6 = 60\text{ ሴ.ሜ}^2$ ይሆናል።"
+      },
+      {
+        id: 28,
+        chapter: "Chapter 5",
+        text: "What is the circumference of a circle with a radius of 7 cm? (Take pi = 22/7)",
+        options: { A: "44 cm", B: "154 cm", C: "22 cm", D: "88 cm" },
+        correct: "A",
+        explanationEn: "The circumference formula is: $C = 2 \times \pi \times r = 2 \times \frac{22}{7} \times 7 = 44\text{ cm}$.",
+        explanationAm: "የክብ ዙሪያ ቀመር፡ $C = 2 \times \pi \times \text{ራዲየስ}$ ነው። እሴቶቹን ስንተካ፡ $2 \times \frac{22}{7} \times 7 = 44\text{ ሴ.ሜ}$ እናገኛለን።"
+      },
+      {
+        id: 29,
+        chapter: "Chapter 5",
+        text: "Find the area of a circle with a radius of 14 cm. (Take pi = 22/7)",
+        options: { A: "616 cm²", B: "88 cm²", C: "154 cm²", D: "308 cm²" },
+        correct: "A",
+        explanationEn: "The area of a circle formula is: $\text{Area} = \pi \times r^2 = \frac{22}{7} \times 14 \times 14 = 22 \times 2 \times 14 = 616\text{ cm}^2$.",
+        explanationAm: "የክብ ስፋት ቀመር፡ $\text{ስፋት} = \pi \times \text{ራዲየስ}^2$ ነው። ስለዚህ $\frac{22}{7} \times 14 \times 14 = 22 \times 2 \times 14 = 616\text{ ሴ.ሜ}^2$ ይሆናል።"
+      },
+      {
+        id: 30,
+        chapter: "Chapter 5",
+        text: "The ratio of the circumference of any circle to its diameter is always equal to:",
+        options: { A: "pi", B: "2 * pi", C: "pi/2", D: "pi^2" },
+        correct: "A",
+        explanationEn: "By mathematical definition, the ratio of a circle's circumference to its diameter ($C/d$) is constant and equal to the transcendental constant $\pi$ (approximately 3.14159).",
+        explanationAm: "በሒሳብ ትርጓሜ መሠረት የክብ ዙሪያ ለዲያሜትር ያለው ጥምርታ ($C/d$) ምንጊዜም የማይለወጥ ሲሆን እሱም ከፓይ ($\pi$) ቋሚ ቁጥር ጋር እኩል ነው።"
+      },
+      {
+        id: 31,
+        chapter: "Chapter 6",
+        text: "Two geometric figures are said to be congruent if they have:",
+        options: { A: "The same size and the same shape", B: "The same shape but different sizes", C: "The same size but different shapes", D: "Different shapes and sizes" },
+        correct: "A",
+        explanationEn: "Congruence means that two figures are identical in both shape and size. They can be perfectly superimposed onto one another.",
+        explanationAm: "ሁለት ምስሎች 'ኮንግሩአንት' (ገጣሚ) ናቸው የሚባሉት ተመሳሳይ ቅርፅ እና ተመሳሳይ መጠን ሲኖራቸው ብቻ ነው፤ አንዱን በሌላው ላይ ብናስቀምጠው ሙሉ በሙሉ ይገጥማል።"
+      },
+      {
+        id: 32,
+        chapter: "Chapter 6",
+        text: "If polygon ABC is congruent to polygon DEF, which vertex corresponds to B?",
+        options: { A: "E", B: "D", C: "F", D: "A" },
+        correct: "A",
+        explanationEn: "Corresponding vertices must follow the exact sequence written: $A \leftrightarrow D$, $B \leftrightarrow E$, and $C \leftrightarrow F$. Thus, B corresponds to E.",
+        explanationAm: "የኮንግሩአንት ምስሎች ተዛማጅ ማዕዘናት በተፃፉበት ቅደም ተከተል ይወሰናሉ: $A \leftrightarrow D$ ፣ $B \leftrightarrow E$ ፣ እና $C \leftrightarrow F$። ስለዚህ ከ B ጋር የሚዛመደው ማዕዘን E ነው።"
+      },
+      {
+        id: 33,
+        chapter: "Chapter 6",
+        text: "When two polygons are congruent, their corresponding angles are always:",
+        options: { A: "Equal in measure", B: "Complementary", C: "Supplementary", D: "Proportional but not equal" },
+        correct: "A",
+        explanationEn: "A fundamental property of congruent polygons is that all corresponding interior angles are exactly equal in measure.",
+        explanationAm: "የኮንግሩአንት ፖሊጎኖች መሠረታዊ ባህሪ ተዛማጅ የሆኑት የውስጥ ማዕዘኖቻቸው ልኬት ምንጊዜም እኩል መሆኑ ነው።"
+      },
+      {
+        id: 34,
+        chapter: "Chapter 6",
+        text: "When two polygons are congruent, their corresponding side lengths are:",
+        options: { A: "Equal", B: "Doubled", C: "Halved", D: "Inversely related" },
+        correct: "A",
+        explanationEn: "Congruency guarantees that all matching side segments of the polygons are perfectly equal in length.",
+        explanationAm: "ኮንግሩአንት (ገጣሚነት) በምስሎቹ መካከል ያሉ ተዛማጅ የጎን ርዝመቶች ሙሉ በሙሉ እኩል መሆናቸውን ያረጋግጣል።"
+      },
+      {
+        id: 35,
+        chapter: "Chapter 6",
+        text: "If triangle ABC is congruent to triangle XYZ, then side AB is equal in length to side:",
+        options: { A: "XY", B: "YZ", C: "XZ", D: "ZZ" },
+        correct: "A",
+        explanationEn: "According to the vertex order in $\triangle ABC \cong \triangle XYZ$, the first two letters $AB$ pair directly with the first two letters $XY$.",
+        explanationAm: "ባለው የፊደላት ቅደም ተከተል መሠረት $\triangle ABC \cong \triangle XYZ$ ሲሆን፣ የመጀመሪያዎቹ ጥንዶች $AB$ ከ $XY$ ጋር ቀጥታ ይዛመዳሉ።"
+      },
+      {
+        id: 36,
+        chapter: "Chapter 6",
+        text: "Which of the following describes the SSS congruence criterion for triangles?",
+        options: { A: "Side-Side-Side", B: "Side-Side-Similarity", C: "Side-Angle-Side", D: "Surface-Side-Shape" },
+        correct: "A",
+        explanationEn: "SSS stands for Side-Side-Side. It state that if three sides of one triangle are equal to three sides of another triangle, the two triangles are congruent.",
+        explanationAm: "SSS ማለት 'ጎን-ጎን-ጎን' (Side-Side-Side) ማለት ነው። ይህም የአንድ ሦስት ማዕዘን ሦስት ጎኖች ከሌላው ሦስት ማዕዘን ሦስት ጎኖች ጋር እኩል ከሆኑ ሦስት ማዕዘኖቹ ገጣሚ ናቸው ይላል።"
+      },
+      {
+        id: 37,
+        chapter: "Chapter 6",
+        text: "The SAS congruence criterion stands for:",
+        options: { A: "Side-Angle-Side", B: "Side-Side-Angle", C: "Shape-Angle-Size", D: "Segment-Arc-Segment" },
+        correct: "A",
+        explanationEn: "SAS stands for Side-Angle-Side. It requires two sides and the unique included angle between them to be congruent to those of another triangle.",
+        explanationAm: "SAS ማለት 'ጎን-ማዕዘን-ጎን' (Side-Angle-Side) ማለት ነው። ይህም ሁለት ጎኖች እና በመካከላቸው የተካተተው ማዕዘን ከሌላው ሦስት ማዕዘን ጋር እኩል መሆን አለባቸው ማለት ነው።"
+      },
+      {
+        id: 38,
+        chapter: "Chapter 6",
+        text: "For the SAS criterion to hold true, the angle must be:",
+        options: { A: "Included between the two sides", B: "Opposite to the longest side", C: "A right angle", D: "An acute angle" },
+        correct: "A",
+        explanationEn: "In SAS, the angle MUST be the 'included angle', meaning it is located physically between the two sides being compared.",
+        explanationAm: "በ SAS ሕግ መሠረት ማዕዘኑ ግድ በሁለቱ እኩል በሆኑት ጎኖች መካከለኛ መሆን አለበት (የተካተተ ማዕዘን ይባላል)።"
+      },
+      {
+        id: 39,
+        chapter: "Chapter 6",
+        text: "What does the ASA congruence criterion stand for?",
+        options: { A: "Angle-Side-Angle", B: "Angle-Angle-Side", C: "Area-Side-Altitude", D: "Angle-Segment-Area" },
+        correct: "A",
+        explanationEn: "ASA stands for Angle-Side-Angle. It states that two triangles are congruent if two angles and the included side of one are equal to those of the other.",
+        explanationAm: "ASA ማለት 'ማዕዘን-ጎን-ማዕዘን' (Angle-Side-Angle) ማለት ነው። ይህም የሁለት ማዕዘኖች እና በመካከላቸው ያለው ጎን እኩልነትን ያሳያል።"
+      },
+      {
+        id: 40,
+        chapter: "Chapter 6",
+        text: "The RHS congruence criterion applies specifically to which type of triangles?",
+        options: { A: "Right-angled triangles", B: "Equilateral triangles", C: "Obtuse-angled triangles", D: "Scalene triangles" },
+        correct: "A",
+        explanationEn: "RHS stands for Right angle-Hypotenuse-Side. This congruence criterion applies exclusively to right-angled triangles.",
+        explanationAm: "RHS የሚያመለክተው 'ቀኝ ማዕዘን-አስረጅ ጎን-ጎን' (Right angle-Hypotenuse-Side) ኮንግሩአንትነትን ሲሆን፤ ይህ የሚሠራው በቀኝ ማዕዘን ሦስት ማዕዘኖች ላይ ብቻ ነው።"
+      },
+      {
+        id: 41,
+        chapter: "Chapter 6",
+        text: "In the RHS congruence criterion, what does the 'H' stand for?",
+        options: { A: "Hypotenuse", B: "Height", C: "Horizontal", D: "Hexagon" },
+        correct: "A",
+        explanationEn: "In RHS, 'R' stands for Right angle, 'H' stands for Hypotenuse (the longest side opposite the right angle), and 'S' stands for Side.",
+        explanationAm: "በ RHS ሕግ ውስጥ 'R' ለቀኝ ማዕዘን (Right angle)፣ 'H' ለአስረጅ ጎን (Hypotenuse)፣ እና 'S' ለቀረው አንድ ጎን (Side) ይቆማሉ።"
+      },
+      {
+        id: 42,
+        chapter: "Chapter 6",
+        text: "If two triangles have three pairs of matching equal angles (AAA), are they always congruent?",
+        options: { A: "Not necessarily, they are similar but not always congruent", B: "Yes, always", C: "No, they are never congruent", D: "Only if they are right triangles" },
+        correct: "A",
+        explanationEn: "AAA (Angle-Angle-Angle) guarantees similarity (same shape), but not congruence, as one triangle could be a scaled-up version of the other.",
+        explanationAm: "AAA (ማዕዘን-ማዕዘን-ማዕዘን) መመሳሰልን (ተመሳሳይ ቅርፅ) ያረጋግጣል እንጂ ገጣሚነትን (ኮንግሩአንትነት) አያረጋግጥም፤ ምክንያቱም አንዱ ትልቅ ሌላው ትንሽ ሊሆን ይችላል።"
+      },
+      {
+        id: 43,
+        chapter: "Chapter 6",
+        text: "If triangle PQR is congruent to triangle STU, and angle P = 50°, what is the measure of angle S?",
+        options: { A: "50°", B: "130°", C: "40°", D: "90°" },
+        correct: "A",
+        explanationEn: "Since $\triangle PQR \cong \triangle STU$, vertex P corresponds directly to vertex S. Therefore, $\angle S = \angle P = 50^\circ$.",
+        explanationAm: "ምክንያቱም $\triangle PQR \cong \triangle STU$ ስለሆነ፣ ማዕዘን P ከማዕዘን S ጋር ቀጥታ ይዛመዳል፤ ስለዚህ የ S ልኬት ከ P ጋር እኩል (50 ዲግሪ) ይሆናል።"
+      },
+      {
+        id: 44,
+        chapter: "Chapter 6",
+        text: "Two squares are always congruent if they have the same:",
+        options: { A: "Side length", B: "Number of vertices", C: "Interior angle sum", D: "Color" },
+        correct: "A",
+        explanationEn: "All squares already share the same interior angles (90°). If they additionally share the same side length, their size is identical, making them congruent.",
+        explanationAm: "ሁሉም ካሬዎች አስቀድመው 90 ዲግሪ ማዕዘን አላቸው። ስለዚህ እኩል የጎን ርዝመት ካላቸው መጠናቸውም እኩል ስለሚሆን ገጣሚ (ኮንግሩአንት) ይሆናሉ።"
+      },
+      {
+        id: 45,
+        chapter: "Chapter 6",
+        text: "Two circles are congruent if and only if they have equal:",
+        options: { A: "Radii", B: "Centers", C: "Chords", D: "Arc lengths" },
+        correct: "A",
+        explanationEn: "The size of a circle is completely determined by its radius. If two circles have equal radii (or diameters), they are congruent.",
+        explanationAm: "የክብ መጠን ሙሉ በሙሉ የሚወሰነው በራዲየሱ ርዝመት ነው። ሁለት ክቦች እኩል ራዲየስ ካላቸው ገጣሚ ወይም ኮንግሩአንት ናቸው።"
+      },
+      {
+        id: 46,
+        chapter: "Chapter 6",
+        text: "If triangle ABC is congruent to triangle DEF, and the perimeter of triangle ABC is 24 cm, what is the perimeter of triangle DEF?",
+        options: { A: "24 cm", B: "12 cm", C: "48 cm", D: "36 cm" },
+        correct: "A",
+        explanationEn: "Congruent triangles have identical corresponding side lengths, which guarantees that their perimeters (and areas) are perfectly equal.",
+        explanationAm: "ገጣሚ (ኮንግሩአንት) ሦስት ማዕዘኖች እኩል የጎን ርዝመቶች ስላሏቸው፣ አጠቃላይ ዙሪያቸው (Perimeter) ሙሉ በሙሉ እኩል (24 ሴ.ሜ) ይሆናል።"
+      },
+      {
+        id: 47,
+        chapter: "Chapter 6",
+        text: "If quadrilateral ABCD is congruent to quadrilateral PQRS, then angle D corresponds to angle:",
+        options: { A: "S", B: "P", C: "Q", D: "R" },
+        correct: "A",
+        explanationEn: "Mapping the letters in order: A $\rightarrow$ P, B $\rightarrow$ Q, C $\rightarrow$ R, and D $\rightarrow$ S. Thus, angle D corresponds to angle S.",
+        explanationAm: "የፊደላቱን ቅደም ተከተል ስንመለከት፡ A ከ P፣ B ከ Q፣ C ከ R፣ እና D ከ S ጋር ይዛመዳሉ። ስለዚህ ማዕዘን D ከ ማዕዘን S ጋር ይገናኛል።"
+      },
+      {
+        id: 48,
+        chapter: "Chapter 6",
+        text: "Can a triangle with side lengths 3cm, 4cm, 5cm be congruent to a triangle with side lengths 5cm, 3cm, 4cm?",
+        options: { A: "Yes, by SSS criterion", B: "No, because the order of sides is different", C: "Only if they are right-angled", D: "Not enough information" },
+        correct: "A",
+        explanationEn: "Yes. Even if the sides are listed in a different order, the actual set of side lengths is identical {3, 4, 5}, establishing congruence via SSS.",
+        explanationAm: "አዎ፣ ገጣሚ ናቸው። የጎን ርዝመቶቹ የተዘረዘሩበት ቅደም ተከተል ቢለያይም፣ ሦስቱ ጎኖች ሙሉ በሙሉ ተመሳሳይ {3, 4, 5} ስለሆኑ በ SSS መርህ ገጣሚ ይሆናሉ።"
+      },
+      {
+        id: 49,
+        chapter: "Chapter 6",
+        text: "Which symbol is universally used to denote congruence between geometric figures?",
+        options: { A: "≅", B: "=", C: "~", D: "||" },
+        correct: "A",
+        explanationEn: "The standard mathematical symbol for congruence is $\cong$, which combines the symbol for similarity ($\sim$) and equality ($=$).",
+        explanationAm: "ለኮንግሩአንትነት (ገጣሚነት) የምንጠቀምበት ዓለም አቀፍ የሒሳብ ምልክት $\cong$ ነው። ይህም መመሳሰልንና ($\sim$) እኩልነትን ($=$) በአንድ ላይ ይይዛል።"
+      },
+      {
+        id: 50,
+        chapter: "Chapter 6",
+        text: "If two sides and a non-included angle of one triangle are equal to two sides and a non-included angle of another triangle, are they definitely congruent?",
+        options: { A: "No, because SSA is not a guaranteed congruence criterion", B: "Yes, always", C: "Only if the angle is acute", D: "Yes, by SAS" },
+        correct: "A",
+        explanationEn: "SSA (Side-Side-Angle where the angle is not included) is not a valid congruence proof because it can lead to two different possible triangles (ambiguous case).",
+        explanationAm: "አይደሉም። SSA (ሁለት ጎኖችና በመካከላቸው ያልተካተተ ማዕዘን) ትክክለኛ የኮንግሩአንት ማረጋገጫ አይደለም፤ ምክንያቱም ይህ ሁለት የተለያዩ ሦስት ማዕዘኖችን ሊሰጠን ስለሚችል (አሻሚ ሁኔታ)።"
+      },
+      {
+        id: 51,
+        chapter: "Chapter 6",
+        text: "If triangle ABC is congruent to triangle LMN, then the area of triangle ABC is:",
+        options: { A: "Equal to the area of triangle LMN", B: "Twice the area of triangle LMN", C: "Half the area of triangle LMN", D: "Unrelated to the area of triangle LMN" },
+        correct: "A",
+        explanationEn: "Since congruent triangles are identical in shape and size, they cover the exact same physical space, meaning their areas are equal.",
+        explanationAm: "ምክንያቱም ኮንግሩአንት ሦስት ማዕዘኖች ተመሳሳይ ቅርፅና መጠን ስላላቸው፣ የሚሸፍኑት ጠቅላላ ስፍራም እኩል (ስፋታቸው እኩል) ይሆናል።"
+      },
+      {
+        id: 52,
+        chapter: "Chapter 6",
+        text: "Given triangle ABC congruent to triangle DEF with AB = 6cm, BC = 7cm, and AC = 8cm. What is the length of side DF?",
+        options: { A: "8 cm", B: "6 cm", C: "7 cm", D: "15 cm" },
+        correct: "A",
+        explanationEn: "By corresponding order, the side DF corresponds to the side AC. Since AC is 8 cm, DF must also be 8 cm.",
+        explanationAm: "በተዛማጅ ቅደም ተከተል መሠረት ጎን DF ከ AC ጋር ይዛመዳል። AC ደግሞ 8 ሴ.ሜ ስለሆነ DF እንዲሁ 8 ሴ.ሜ ይሆናል።"
+      },
+      {
+        id: 53,
+        chapter: "Chapter 6",
+        text: "In an isosceles triangle ABC where AB = AC, the line segment bisecting angle A creates two triangles that are:",
+        options: { A: "Congruent to each other", B: "Similar but unequal in size", C: "Scalene with unequal areas", D: "Equilateral" },
+        correct: "A",
+        explanationEn: "The angle bisector of the vertex angle of an isosceles triangle splits it into two symmetric, identical (congruent) right triangles by SAS.",
+        explanationAm: "በባለ ሁለት እኩል ጎን ሦስት ማዕዘን ላይ፣ ማዕዘን Aን እኩል ለሁለት የሚከፍለው መስመር፣ ሦስት ማዕዘኑን እርስ በርሳቸው ገጣሚ (ኮንግሩአንት) ወደሆኑ ሁለት ሦስት ማዕዘኖች ይከፍለዋል።"
+      },
+      {
+        id: 54,
+        chapter: "Chapter 6",
+        text: "Two rectangles are congruent if:",
+        options: { A: "Their corresponding lengths and widths are equal", B: "Their areas are equal", C: "Their perimeters are equal", D: "Their diagonals are perpendicular" },
+        correct: "A",
+        explanationEn: "Rectangles are defined by length and width. If these two measurements match their corresponding counterparts, both shape and size match.",
+        explanationAm: "ሁለት ሬክታንግሎች ገጣሚ የሚሆኑት ተዛማጅ ርዝመታቸውና ወርዳቸው እርስ በርሱ እኩል ሲሆን ብቻ ነው።"
+      },
+      {
+        id: 55,
+        chapter: "Chapter 6",
+        text: "The property that states 'every geometric figure is congruent to itself' is called:",
+        options: { A: "Reflexive property", B: "Symmetric property", C: "Transitive property", D: "Substitution property" },
+        correct: "A",
+        explanationEn: "The reflexive property of congruence mathematically states that any geometric figure is always congruent to itself (e.g., $A \cong A$).",
+        explanationAm: "ማንኛውም የጂኦሜትሪ ቅርፅ ከራሱ ጋር ገጣሚ (ኮንግሩአንት) ነው የሚለው ሕግ 'ሪፍሌክሲቭ' (Reflexive property - ራስ-ተመላሽ ባህሪ) ይባላል።"
+      },
+      {
+        id: 56,
+        chapter: "Chapter 7",
+        text: "The sum of all data values divided by the total number of values is called the:",
+        options: { A: "Mean", B: "Median", C: "Mode", D: "Range" },
+        correct: "A",
+        explanationEn: "The 'Mean' (arithmetic average) is calculated by adding all numerical values in a data set and dividing by the count of those values.",
+        explanationAm: "የሁሉም መረጃዎች ድምር ለአጠቃላይ የመረጃዎቹ ብዛት ሲካፈል የሚገኘው ውጤት 'አማካይ' (Mean) በመባል ይታወቃል።"
+      },
+      {
+        id: 57,
+        chapter: "Chapter 7",
+        text: "Find the mean of the data values: 6, 10, 5, 7, and 12.",
+        options: { A: "8", B: "7", C: "9", D: "40" },
+        correct: "A",
+        explanationEn: "First, sum the values: $6 + 10 + 5 + 7 + 12 = 40$. Then divide by the count (5): $\text{Mean} = 40 / 5 = 8$.",
+        explanationAm: "በመጀመሪያ መረጃዎቹን እንደምራለን፡ $6+10+5+7+12=40$። ከዚያ ለብዛቱ (5) እናካፍላለን፡ $40/5 = 8$ እናገኛለን።"
+      },
+      {
+        id: 58,
+        chapter: "Chapter 7",
+        text: "The middle value of a data set when the values are arranged in ascending order is the:",
+        options: { A: "Median", B: "Mean", C: "Mode", D: "Frequency" },
+        correct: "A",
+        explanationEn: "The 'Median' is the middle number of a sorted list. It splits the ordered dataset exactly into two equal halves.",
+        explanationAm: "መረጃዎች ከትንሽ ወደ ትልቅ በቅደም ተከተል ሲቀመጡ በትክክል መሃል ላይ የሚገኘው እሴት 'ሚዲያን' (Median - መካከለኛ) ይባላል።"
+      },
+      {
+        id: 59,
+        chapter: "Chapter 7",
+        text: "Find the median of the following data: 3, 11, 7, 5, 14.",
+        options: { A: "7", B: "5", C: "8", D: "9" },
+        correct: "A",
+        explanationEn: "First, arrange the numbers in ascending order: 3, 5, 7, 11, 14. The middle value is clearly 7.",
+        explanationAm: "በመጀመሪያ መረጃዎቹን በቅደም ተከተል እናስተካክላለን፡ 3, 5, 7, 11, 14። በትክክል መሃል ላይ የሚገኘው ቁጥር 7 ነው።"
+      },
+      {
+        id: 60,
+        chapter: "Chapter 7",
+        text: "If a data set has an even number of values, how is the median calculated?",
+        options: { A: "The average of the two middle values", B: "The largest value minus the smallest", C: "The most frequent value", D: "The average of all values" },
+        correct: "A",
+        explanationEn: "For an even number of data points, there is no single middle value. The median is the arithmetic mean of the two middle values.",
+        explanationAm: "የመረጃዎቹ ብዛት እጥፍ (even) ሲሆን ሁለት መካከለኛ ቁጥሮች ይኖሩናል። ሚዲያኑ የሚሰላው የነዚህን ሁለት መካከለኛ ቁጥሮች አማካይ በመውሰድ ነው።"
+      },
+      {
+        id: 61,
+        chapter: "Chapter 7",
+        text: "Find the median of this data set: 4, 8, 5, 12, 10, 7.",
+        options: { A: "7.5", B: "7", C: "8", D: "8.5" },
+        correct: "A",
+        explanationEn: "Arrange in ascending order: 4, 5, 7, 8, 10, 12. The two middle values are 7 and 8. Their average is $(7+8)/2 = 7.5$.",
+        explanationAm: "መረጃዎቹን በቅደም ተከተል ስናስቀምጥ፡ 4, 5, 7, 8, 10, 12። መሃል ላይ ያሉት 7 እና 8 ናቸው። አማካያቸው ደግሞ $(7+8)/2 = 7.5$ ይሆናል።"
+      },
+      {
+        id: 62,
+        chapter: "Chapter 7",
+        text: "The value that occurs most frequently in a data set is known as the:",
+        options: { A: "Mode", B: "Mean", C: "Median", D: "Range" },
+        correct: "A",
+        explanationEn: "The 'Mode' is the value that appears most often in a dataset. A dataset can have one mode, more than one mode, or no mode at all.",
+        explanationAm: "በአንድ የመረጃ ስብስብ ውስጥ ደጋግሞ በብዛት የተገኘው እሴት 'ሞድ' (Mode - በብዛት የታየ) ይባላል።"
+      },
+      {
+        id: 63,
+        chapter: "Chapter 7",
+        text: "Find the mode of the data: 12, 15, 12, 14, 13, 14, 12.",
+        options: { A: "12", B: "14", C: "13", D: "15" },
+        correct: "A",
+        explanationEn: "Counting the frequencies: 12 appears three times; 14 appears twice; 13, 15 appear once. Thus, the mode is 12.",
+        explanationAm: "የቁጥሮቹን ድግግሞሽ ስንቆጥር፡ 12 ሦስት ጊዜ ተገኝቷል፤ 14 ሁለት ጊዜ፤ ሌሎቹ ደግሞ አንድ ጊዜ ብቻ። ስለዚህ ሞዱ 12 ነው።"
+      },
+      {
+        id: 64,
+        chapter: "Chapter 7",
+        text: "A dataset where every value occurs exactly once has how many modes?",
+        options: { A: "No mode", B: "One mode", C: "Two modes", D: "Infinitely many modes" },
+        correct: "A",
+        explanationEn: "If every value in a dataset appears with identical frequency, there is no outstanding high frequency, meaning there is 'no mode'.",
+        explanationAm: "በመረጃዎቹ ውስጥ ያሉት ቁጥሮች በሙሉ እኩል አንድ አንድ ጊዜ ብቻ ከተገኙ፣ ጎልቶ የወጣ ድግግሞሽ ስለሌለ 'ሞድ የለም' (No mode) ይባላል።"
+      },
+      {
+        id: 65,
+        chapter: "Chapter 7",
+        text: "If two values in a data set occur with the same maximum frequency, the data is:",
+        options: { A: "Bimodal", B: "Unimodal", C: "Trimodal", D: "Symmetrical" },
+        correct: "A",
+        explanationEn: "A dataset with two modes is called bimodal, representing two peaks of high frequency.",
+        explanationAm: "ሁለት እኩል ከፍተኛ ድግግሞሽ ያላቸው እሴቶች ያሉት የመረጃ ስብስብ 'ባይሞዳል' (Bimodal - ባለ ሁለት ሞድ) ይባላል።"
+      },
+      {
+        id: 66,
+        chapter: "Chapter 7",
+        text: "Find the mode(s) of the given dataset: 23, 22, 21, 24, 23, 20, 24, 25.",
+        options: { A: "23 and 24", B: "23 only", C: "24 only", D: "No mode" },
+        correct: "A",
+        explanationEn: "Both 23 and 24 appear twice, which is the highest frequency. Thus, this dataset is bimodal with modes 23 and 24.",
+        explanationAm: "ቁጥር 23 እና 24 ሁለቱም እኩል ሁለት ሁለት ጊዜ በመገኘት ከፍተኛውን ድግግሞሽ ይዘዋል። ስለዚህ ሞዶቹ 23 እና 24 ናቸው።"
+      },
+      {
+        id: 67,
+        chapter: "Chapter 7",
+        text: "The difference between the highest and lowest values in a data set is the:",
+        options: { A: "Range", B: "Variance", C: "Median", D: "Deviation" },
+        correct: "A",
+        explanationEn: "The 'Range' is a basic measure of statistical dispersion, calculated by subtracting the minimum value from the maximum value.",
+        explanationAm: "በመረጃ ስብስብ ውስጥ ባለው ከፍተኛ እሴት እና ዝቅተኛ እሴት መካከል ያለው ልዩነት 'ሬንጅ' (Range - ልዩነት/ክልል) ይባላል።"
+      },
+      {
+        id: 68,
+        chapter: "Chapter 7",
+        text: "Find the range of the following test scores: 54, 88, 42, 95, 71, 63.",
+        options: { A: "53", B: "95", C: "42", D: "43" },
+        correct: "A",
+        explanationEn: "Maximum value = 95. Minimum value = 42. $\text{Range} = 95 - 42 = 53$.",
+        explanationAm: "ከፍተኛው ቁጥር = 95፣ ዝቅተኛው ቁጥር = 42። ልዩነቱ (Range) = $95 - 42 = 53$ ይሆናል።"
+      },
+      {
+        id: 69,
+        chapter: "Chapter 7",
+        text: "The mean of three numbers is 18. What is the sum of these three numbers?",
+        options: { A: "54", B: "6", C: "18", D: "36" },
+        correct: "A",
+        explanationEn: "Since $\text{Mean} = \text{Sum} / \text{Count}$, then $\text{Sum} = \text{Mean} \times \text{Count} = 18 \times 3 = 54$.",
+        explanationAm: "አማካይ = ድምር / ብዛት ስለሆነ፤ ድምር = አማካይ $\times$ ብዛት ይሆናል። ስለዚህ $18 \times 3 = 54$ ነው።"
+      },
+      {
+        id: 70,
+        chapter: "Chapter 7",
+        text: "The mean of 3 numbers is 18, and the mean of 5 other numbers is 24. Find the mean of all 8 numbers.",
+        options: { A: "21.75", B: "21", C: "22", D: "20.5" },
+        correct: "A",
+        explanationEn: "Combined sum = $(3 \times 18) + (5 \times 24) = 54 + 120 = 174$. Combined count = 8. Combined Mean = $174 / 8 = 21.75$.",
+        explanationAm: "አጠቃላይ ድምር = $(3 \times 18) + (5 \times 24) = 54 + 120 = 174$። ጠቅላላ ብዛት = 8። አዲሱ አማካይ = $174 / 8 = 21.75$ ይሆናል።"
+      },
+      {
+        id: 71,
+        chapter: "Chapter 7",
+        text: "The mean of five values 16, 2x, 6, 10, and 4 is 8. Find the value of x.",
+        options: { A: "2", B: "4", C: "8", D: "1" },
+        correct: "A",
+        explanationEn: "Sum of values = $16 + 2x + 6 + 10 + 4 = 36 + 2x$. Since Mean = 8 for 5 values, Sum = $5 \times 8 = 40$. $36 + 2x = 40 \rightarrow 2x = 4 \rightarrow x = 2$.",
+        explanationAm: "የመረጃዎቹ ድምር = $16 + 2x + 6 + 10 + 4 = 36 + 2x$። 5 እሴቶች ስላሉና አማካዩ 8 ስለሆነ፤ ጠቅላላ ድምሩ $5 \times 8 = 40$ ነው። $36 + 2x = 40 \rightarrow 2x = 4 \rightarrow x = 2$።"
+      },
+      {
+        id: 72,
+        chapter: "Chapter 7",
+        text: "A table that shows the number of times each data value occurs is a:",
+        options: { A: "Frequency distribution table", B: "Bar graph", C: "Pie chart", D: "Histogram" },
+        correct: "A",
+        explanationEn: "A frequency distribution table lists data values alongside their frequency, representing how many times each value appears.",
+        explanationAm: "የእያንዳንዱ መረጃ ድግግሞሽ ብዛት የሚመዘገብበት ሠንጠረዥ 'የድግግሞሽ ስርጭት ሠንጠረዥ' (Frequency distribution table) ይባላል።"
+      },
+      {
+        id: 73,
+        chapter: "Chapter 7",
+        text: "In a bar graph, what represents the frequency of each category?",
+        options: { A: "The height or length of the bar", B: "The width of the bar", C: "The color of the bar", D: "The space between the bars" },
+        correct: "A",
+        explanationEn: "In a bar chart/graph, the height or length of each bar is directly proportional to the frequency of the category it represents.",
+        explanationAm: "በባር ግራፍ ውስጥ የእያንዳንዱ አምድ ርዝመት ወይም ቁመት የሚወክለውን የመረጃ ድግግሞሽ ብዛት ያሳያል።"
+      },
+      {
+        id: 74,
+        chapter: "Chapter 7",
+        text: "A circular graph divided into sectors where each sector represents a percentage of the total is a:",
+        options: { A: "Pie chart", B: "Bar graph", C: "Line graph", D: "Pictograph" },
+        correct: "A",
+        explanationEn: "A pie chart (or circle chart) uses circular sectors to visually display relative proportions or percentages of a whole dataset.",
+        explanationAm: "መረጃዎችን በክብ ቅርፅ ውስጥ በክፍልፋይ ወይም በፐርሰንት የሚወክል ምስላዊ መግለጫ 'ፓይ ቻርት' (Pie chart) ይባላል።"
+      },
+      {
+        id: 75,
+        chapter: "Chapter 7",
+        text: "The entire circle of a pie chart corresponds to an angle of how many degrees?",
+        options: { A: "360°", B: "180°", C: "100°", D: "90°" },
+        correct: "A",
+        explanationEn: "A complete rotation around a circle is always exactly 360 degrees, which represents 100% of the data in a pie chart.",
+        explanationAm: "የአንድ ሙሉ ክብ ዙሪያ ማዕዘን ድምር 360 ዲግሪ ሲሆን፤ በፓይ ቻርት ውስጥ ሙሉውን (100%) መረጃ ይወክላል።"
+      },
+      {
+        id: 76,
+        chapter: "Chapter 7",
+        text: "If a category in a pie chart represents 25% of the total data, what is the central angle of its sector?",
+        options: { A: "90°", B: "45°", C: "25°", D: "60°" },
+        correct: "A",
+        explanationEn: "The central angle is calculated by taking 25% of the full circle: $25\% \text{ of } 360^\circ = 0.25 \times 360 = 90^\circ$.",
+        explanationAm: "የክፍሉ ማዕዘን የሚሰላው ከ 360 ዲግሪ 25 ፐርሰንቱን በመውሰድ ነው፡ $0.25 \times 360 = 90$ ዲግሪ ይሆናል።"
+      },
+      {
+        id: 77,
+        chapter: "Chapter 7",
+        text: "A sector of a pie chart has a central angle of 120°. What fraction of the total data does this represent?",
+        options: { A: "1/3", B: "1/4", C: "1/2", D: "2/3" },
+        correct: "A",
+        explanationEn: "Compare the sector's angle to the entire circle: $120^\circ / 360^\circ = 120/360 = 1/3$ of the total data.",
+        explanationAm: "የክፍሉን ማዕዘን ከጠቅላላው ክብ ጋር እናነጻጽራለን፡ $120/360$ ስናቃልለው $1/3$ (አንድ ሦስተኛ) ክፍልፋይ እናገኛለን።"
+      },
+      {
+        id: 78,
+        chapter: "Chapter 7",
+        text: "Which measure of central tendency can be used for non-numerical qualitative data?",
+        options: { A: "Mode", B: "Mean", C: "Median", D: "Range" },
+        correct: "A",
+        explanationEn: "The mode measures frequency of occurrences and can be applied to non-numerical labels (e.g., determining the most popular car color, favorite fruit).",
+        explanationAm: "ቁጥር ለሌላቸው መረጃዎች (ለምሳሌ ተወዳጅ ቀለም፣ የፍራፍሬ ዓይነት) ልንጠቀምበት የምንችለው መካከለኛ መለኪያ 'ሞድ' (Mode - በብዛት የተመረጠ) ብቻ ነው።"
+      },
+      {
+        id: 79,
+        chapter: "Chapter 7",
+        text: "If a data set consists of the values: 5, 5, 5, 5, 5, what is its range?",
+        options: { A: "0", B: "5", C: "1", D: "25" },
+        correct: "A",
+        explanationEn: "The maximum value is 5 and the minimum is 5. Therefore, the range is calculated as: $\text{Maximum} - \text{Minimum} = 5 - 5 = 0$.",
+        explanationAm: "ከፍተኛው ቁጥር 5 ሲሆን ዝቅተኛውም 5 ነው። ስለዚህ ልዩነቱ (Range) = $5 - 5 = 0$ ይሆናል።"
+      },
+      {
+        id: 80,
+        chapter: "Chapter 7",
+        text: "The number of times a specific event or data value occurs is called its:",
+        options: { A: "Frequency", B: "Probability", C: "Cumulative total", D: "Sample size" },
+        correct: "A",
+        explanationEn: "In statistics, the number of times a specific response or data value occurs is defined as its 'Frequency'.",
+        explanationAm: "በስታቲስቲክስ ውስጥ፣ የአንድ የተወሰነ መረጃ ወይም ክስተት መደጋገም ቁጥር 'ድግግሞሽ' (Frequency) ተብሎ ይጠራል።"
+      }
+    ];
+
+    // Global App States
+    let currentIdx = 0;
+    let studentResponses = {}; // Holds responses mapping { questionId: "SelectedOption" }
+    let studentName = "";
+    let studentId = "";
+
+    // Initialization on window load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderNavigationDots();
+      loadGradebook();
+    });
+
+    // Start Quiz
+    function startQuiz(e) {
+      e.preventDefault();
+      studentName = document.getElementById('student-name').value.trim();
+      studentId = document.getElementById('student-id').value.trim();
+      
+      if (!studentName || !studentId) {
+        alert("Please enter both Name and ID to initiate the assessment.");
+        return;
+      }
+
+      document.getElementById('display-student-name').textContent = studentName;
+      document.getElementById('screen-reg').classList.add('hidden');
+      document.getElementById('screen-quiz').classList.remove('hidden');
+      
+      currentIdx = 0;
+      loadQuestion(currentIdx);
+      speakPhrase("Welcome " + studentName + ". The examination has started. Good luck.");
+    }
+
+    // Load particular question
+    function loadQuestion(index) {
+      stopSpeech();
+      const q = quizQuestions[index];
+      
+      // Update UI Header elements
+      document.getElementById('chapter-tag').textContent = q.chapter;
+      document.getElementById('current-q-index').textContent = index + 1;
+      document.getElementById('question-text').textContent = q.id + ". " + q.text;
+      
+      // Update Progress bar width
+      const percentage = ((index + 1) / quizQuestions.length) * 100;
+      document.getElementById('progress-bar-fill').style.width = percentage + "%";
+
+      // Render options
+      const container = document.getElementById('options-container');
+      container.innerHTML = '';
+
+      const hasAnswered = studentResponses[q.id] !== undefined;
+      const savedAnswer = studentResponses[q.id];
+
+      for (const [key, val] of Object.entries(q.options)) {
+        const button = document.createElement('button');
+        button.className = "flex items-start text-left p-4 rounded-2xl border transition-all duration-200 text-sm md:text-base font-semibold ";
+        
+        if (!hasAnswered) {
+          // Unanswered State
+          button.className += "bg-slate-950/40 border-slate-800 hover:border-indigo-500 hover:bg-indigo-950/20 text-slate-200";
+          button.onclick = () => selectOption(q.id, key);
+        } else {
+          // Answered State: Apply colors immediately (Instant Feedback)
+          if (key === q.correct) {
+            // Correct Choice Highlighted in Green
+            button.className += "bg-emerald-950/40 border-emerald-500 text-emerald-300 shadow-md shadow-emerald-950/30";
+          } else if (key === savedAnswer) {
+            // Student chose this wrong answer
+            button.className += "bg-red-950/40 border-red-500 text-red-300 shadow-md shadow-red-950/30";
+          } else {
+            // Other neutral choices
+            button.className += "bg-slate-950/10 border-slate-900 text-slate-500 cursor-not-allowed";
+          }
+        }
+
+        button.innerHTML = `
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 mr-3 text-xs font-bold shrink-0">${key}</span>
+          <span class="pt-0.5 leading-relaxed">${val}</span>
+        `;
+        container.appendChild(button);
+      }
+
+      // Display/Hide explanations instantly based on response status
+      const feedback = document.getElementById('feedback-panel');
+      if (hasAnswered) {
+        feedback.classList.remove('hidden');
+        const correctIcon = document.getElementById('feedback-status-icon');
+        const correctText = document.getElementById('feedback-status-text');
+        const titleContainer = document.getElementById('feedback-status-title');
+
+        if (savedAnswer === q.correct) {
+          titleContainer.className = "flex items-center gap-2.5 text-emerald-400";
+          correctIcon.className = "fa-solid fa-circle-check text-base";
+          correctText.textContent = "Correct Answer Selected!";
+        } else {
+          titleContainer.className = "flex items-center gap-2.5 text-red-400";
+          correctIcon.className = "fa-solid fa-triangle-exclamation text-base";
+          correctText.textContent = `Incorrect. The correct choice is ${q.correct}.`;
+        }
+
+        document.getElementById('explanation-en').textContent = q.explanationEn;
+        document.getElementById('explanation-am').textContent = q.explanationAm;
+      } else {
+        feedback.classList.add('hidden');
+      }
+
+      // Configure back/skip buttons visibility
+      document.getElementById('btn-back').disabled = (index === 0);
+      document.getElementById('btn-back').style.opacity = (index === 0) ? '0.4' : '1';
+
+      // Check if it's the last question
+      if (index === quizQuestions.length - 1) {
+        document.getElementById('btn-skip').classList.add('hidden');
+        document.getElementById('btn-submit-exam').classList.remove('hidden');
+      } else {
+        document.getElementById('btn-skip').classList.remove('hidden');
+        document.getElementById('btn-submit-exam').classList.add('hidden');
+      }
+
+      updateNavigatorDots();
+    }
+
+    // Trigger action on student answer selection
+    function selectOption(questionId, selectedChoice) {
+      if (studentResponses[questionId] !== undefined) return; // Prevent double trigger
+      
+      studentResponses[questionId] = selectedChoice;
+      
+      // Refresh current question visually to display results and explanation instantly
+      loadQuestion(currentIdx);
+      
+      // Auto narration vocalization after choice
+      const q = quizQuestions[currentIdx];
+      if (selectedChoice === q.correct) {
+        speakPhrase("Correct.");
+      } else {
+        speakPhrase("Incorrect. The correct answer is option " + q.correct);
+      }
+    }
+
+    // Previous Question
+    function previousQuestion() {
+      if (currentIdx > 0) {
+        currentIdx--;
+        loadQuestion(currentIdx);
+      }
+    }
+
+    // Skip/Next Question
+    function skipQuestion() {
+      if (currentIdx < quizQuestions.length - 1) {
+        currentIdx++;
+        loadQuestion(currentIdx);
+      }
+    }
+
+    // Render navigation indicators
+    function renderNavigationDots() {
+      const container = document.getElementById('question-navigator-dots');
+      container.innerHTML = '';
+      quizQuestions.forEach((q, idx) => {
+        const btn = document.createElement('button');
+        btn.id = `nav-dot-${idx}`;
+        btn.onclick = () => jumpToQuestion(idx);
+        btn.className = "w-7 h-7 text-[10px] font-bold rounded-lg border flex items-center justify-center transition-all shrink-0 ";
+        btn.textContent = idx + 1;
+        container.appendChild(btn);
+      });
+      updateNavigatorDots();
+    }
+
+    // Dynamic dot color logic based on status
+    function updateNavigatorDots() {
+      quizQuestions.forEach((q, idx) => {
+        const btn = document.getElementById(`nav-dot-${idx}`);
+        if (!btn) return;
+
+        // Reset
+        btn.className = "w-7 h-7 text-[10px] font-bold rounded-lg border flex items-center justify-center transition-all shrink-0 ";
+        
+        const hasAnswered = studentResponses[q.id] !== undefined;
+        const isCurrent = (idx === currentIdx);
+
+        if (isCurrent) {
+          btn.className += "bg-indigo-600 border-indigo-400 text-white ring-2 ring-indigo-500/45 scale-110";
+        } else if (hasAnswered) {
+          const isCorrect = studentResponses[q.id] === q.correct;
+          if (isCorrect) {
+            btn.className += "bg-emerald-950/50 border-emerald-800 text-emerald-400";
+          } else {
+            btn.className += "bg-red-950/50 border-red-800 text-red-400";
+          }
+        } else {
+          btn.className += "bg-slate-900/60 border-slate-800 text-slate-400 hover:border-slate-700";
+        }
+      });
+    }
+
+    // Direct jump
+    function jumpToQuestion(idx) {
+      currentIdx = idx;
+      loadQuestion(currentIdx);
+    }
+
+    // Confirm Modal trigger
+    function finishQuizConfirmation() {
+      document.getElementById('confirm-modal').classList.remove('hidden');
+    }
+
+    // Close Modal
+    function closeConfirmModal() {
+      document.getElementById('confirm-modal').classList.add('hidden');
+    }
+
+    // Submit Exam & Process Results Dashboard
+    function submitExam() {
+      closeConfirmModal();
+      stopSpeech();
+      
+      let correctTally = 0;
+      let unansweredTally = 0;
+
+      quizQuestions.forEach(q => {
+        const ans = studentResponses[q.id];
+        if (ans === undefined) {
+          unansweredTally++;
+        } else if (ans === q.correct) {
+          correctTally++;
+        }
+      });
+
+      const scorePercent = Math.round((correctTally / quizQuestions.length) * 100);
+      
+      // Update Results Screen
+      document.getElementById('res-student-name').textContent = studentName;
+      document.getElementById('res-student-id').textContent = studentId;
+      document.getElementById('res-skipped').textContent = `${unansweredTally} / 80`;
+      
+      const passText = document.getElementById('res-pass-fail');
+      if (scorePercent >= 50) {
+        passText.textContent = "PASS";
+        passText.className = "text-sm font-bold mt-0.5 text-emerald-400";
+      } else {
+        passText.textContent = "RE-EVALUATE";
+        passText.className = "text-sm font-bold mt-0.5 text-red-400";
+      }
+
+      // Performance narrative badge
+      const badge = document.getElementById('performance-badge');
+      if (scorePercent >= 90) {
+        badge.textContent = "Outstanding Achievement! (Excellent)";
+        badge.className = "px-3 py-1 bg-emerald-500/20 text-emerald-300 text-xs font-bold rounded-lg mt-2";
+      } else if (scorePercent >= 75) {
+        badge.textContent = "Very Good Progression!";
+        badge.className = "px-3 py-1 bg-blue-500/20 text-blue-300 text-xs font-bold rounded-lg mt-2";
+      } else if (scorePercent >= 50) {
+        badge.textContent = "Satisfactory Pass Status";
+        badge.className = "px-3 py-1 bg-amber-500/20 text-amber-300 text-xs font-bold rounded-lg mt-2";
+      } else {
+        badge.textContent = "Fails to meet minimum benchmark";
+        badge.className = "px-3 py-1 bg-red-500/20 text-red-300 text-xs font-bold rounded-lg mt-2";
+      }
+
+      // Text results
+      document.getElementById('result-score-percent').textContent = scorePercent + "%";
+      document.getElementById('result-score-fraction').textContent = `${correctTally} / ${quizQuestions.length} Correct`;
+
+      // Circular ring animation
+      const ring = document.getElementById('score-ring-progress');
+      const radius = 64;
+      const circumference = 2 * Math.PI * radius; // Approx 402.12
+      const offset = circumference - (scorePercent / 100) * circumference;
+      
+      // Transition display screen
+      document.getElementById('screen-quiz').classList.add('hidden');
+      document.getElementById('screen-results').classList.remove('hidden');
+
+      setTimeout(() => {
+        ring.style.strokeDashoffset = offset;
+      }, 150);
+
+      // Save record to local Teacher gradebook
+      saveGradeToMemory(studentName, studentId, correctTally, scorePercent);
+
+      speakPhrase(`Assessment completed. Your final calculated score is ${scorePercent} percent. Please notify your teacher.`);
+    }
+
+    // Speak a specific phrase using local Web Speech API (British Accent priority)
+    function speakPhrase(text) {
+      if (narratorMuted || !window.speechSynthesis) return;
+      stopSpeech();
+
+      currentSynthUtterance = new SpeechSynthesisUtterance(text);
+      
+      // Attempt to load premium UK/British English voices
+      const voices = window.speechSynthesis.getVoices();
+      const ukVoice = voices.find(v => v.lang.includes('en-GB') || v.name.includes('Google UK English') || v.name.includes('British'));
+      if (ukVoice) {
+        currentSynthUtterance.voice = ukVoice;
+      }
+      
+      currentSynthUtterance.rate = 0.95; // Golden clear pacing
+      currentSynthUtterance.pitch = 1.05; // Balanced melodic tone
+      window.speechSynthesis.speak(currentSynthUtterance);
+    }
+
+    // Speak active quiz question and choices
+    function speakCurrentQuestion() {
+      const q = quizQuestions[currentIdx];
+      let narrationText = `Question ${currentIdx + 1}. ${q.text}. `;
+      narrationText += `Option A, ${q.options.A}. `;
+      narrationText += `Option B, ${q.options.B}. `;
+      narrationText += `Option C, ${q.options.C}. `;
+      narrationText += `Option D, ${q.options.D}.`;
+      
+      speakPhrase(narrationText);
+    }
+
+    // Force voice API load
+    if (window.speechSynthesis) {
+      window.speechSynthesis.getVoices();
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+      }
+    }
+
+    // Send score via Standard Email integration to mesayferedegn2@gmail.com
+    function submitScoreEmail() {
+      const recipient = "mesayferedegn2@gmail.com";
+      const subject = encodeURIComponent(`Grade 7 Math Assessment - ${studentName} (ID: ${studentId})`);
+      
+      let scoreTally = 0;
+      quizQuestions.forEach(q => {
+        if (studentResponses[q.id] === q.correct) scoreTally++;
+      });
+      const scorePercent = Math.round((scoreTally / quizQuestions.length) * 100);
+
+      let bodyText = `Dear Instructor Mr. Mesay Feredegn,\n\n`;
+      bodyText += `I have successfully completed the Grade 7 Mathematics Comprehensive Assessment on Chapters 5, 6, and 7.\n\n`;
+      bodyText += `--- OFFICIAL STUDENT METADATA ---\n`;
+      bodyText += `Student Full Name: ${studentName}\n`;
+      bodyText += `Student ID Number: ${studentId}\n`;
+      bodyText += `Final Core Score: ${scorePercent}% (${scoreTally} / 80 correct answers)\n`;
+      bodyText += `Date of Completion: ${new Date().toLocaleString()}\n\n`;
+      bodyText += `Please register this grade into the permanent student record.\n\n`;
+      bodyText += `Best regards,\n${studentName}`;
+
+      const body = encodeURIComponent(bodyText);
+      window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    }
+
+    // Restart examination utility
+    function restartExam() {
+      studentResponses = {};
+      currentIdx = 0;
+      document.getElementById('screen-results').classList.add('hidden');
+      document.getElementById('screen-quiz').classList.remove('hidden');
+      loadQuestion(currentIdx);
+    }
+
+    // Local Teacher Gradebook logic
+    function saveGradeToMemory(name, id, correct, percent) {
+      const record = {
+        name,
+        id,
+        correct,
+        percent,
+        date: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+      };
+
+      let currentHistory = [];
+      try {
+        const saved = localStorage.getItem('g7_math_history');
+        if (saved) {
+          currentHistory = JSON.parse(saved);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+
+      currentHistory.unshift(record); // Push latest to the top
+      localStorage.setItem('g7_math_history', JSON.stringify(currentHistory));
+      loadGradebook();
+    }
+
+    function loadGradebook() {
+      const tbody = document.getElementById('gradebook-rows');
+      let currentHistory = [];
+      try {
+        const saved = localStorage.getItem('g7_math_history');
+        if (saved) {
+          currentHistory = JSON.parse(saved);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+
+      if (currentHistory.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" class="px-4 py-8 text-center text-slate-500 text-xs">No grades filed in this browser session.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = '';
+      currentHistory.forEach(item => {
+        const row = document.createElement('tr');
+        row.className = "border-b border-slate-900 text-slate-300 text-xs hover:bg-slate-900/30 transition-all";
+        row.innerHTML = `
+          <td class="px-4 py-3 font-semibold text-slate-200">${item.name}</td>
+          <td class="px-4 py-3 font-mono text-indigo-300">${item.id}</td>
+          <td class="px-4 py-3 text-center">${item.correct} / 80</td>
+          <td class="px-4 py-3 text-center font-bold text-emerald-400">${item.percent}%</td>
+          <td class="px-4 py-3 text-right text-slate-500">${item.date}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+  </script>
+</body>
+</html>
